@@ -6,10 +6,14 @@ import com.shotaroi.employeemanagementapp.exception.ResourceNotFoundException;
 import com.shotaroi.employeemanagementapp.mapper.EmployeeMapper;
 import com.shotaroi.employeemanagementapp.repository.EmployeeRepository;
 import com.shotaroi.employeemanagementapp.service.EmployeeService;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
+@AllArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeRepository employeeRepository;
 
