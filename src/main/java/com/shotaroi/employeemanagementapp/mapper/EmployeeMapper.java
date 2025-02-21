@@ -10,8 +10,7 @@ public class EmployeeMapper {
                 employee.getId(),
                 employee.getFirstName(),
                 employee.getLastName(),
-                employee.getEmail(),
-                employee.getDepartment().getId()
+                employee.getEmail()
                 );
     }
 
