@@ -2,7 +2,7 @@ package com.shotaroi.employeemanagementapp.service.impl;
 
 import com.shotaroi.employeemanagementapp.dto.EmployeeDTO;
 import com.shotaroi.employeemanagementapp.entity.Employee;
-import com.shotaroi.employeemanagementapp.exception.ResourceNotFoundException;
+import com.shotaroi.employeemanagementapp.exception.EmployeeNotFoundException;
 import com.shotaroi.employeemanagementapp.mapper.EmployeeMapper;
 import com.shotaroi.employeemanagementapp.repository.EmployeeRepository;
 import com.shotaroi.employeemanagementapp.service.EmployeeService;
@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeRepository employeeRepository;
 
-
     @Override
     public EmployeeDTO createEmployee(EmployeeDTO employeeDTO) {
         Employee employee = EmployeeMapper.toEntity(employeeDTO);
@@ -28,7 +27,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeeDTO getEmployeeById(Long id) {
         Employee employee = employeeRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Employee with id: " + id + " was not found"));
+                .orElseThrow(() -> new EmployeeNotFoundException("Employee with id " + id + " not found"));
         return EmployeeMapper.toDTO(employee);
     }
 
@@ -41,7 +40,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeeDTO updateEmployee(Long id, EmployeeDTO employeeDTO) {
         Employee employee = employeeRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Employee with id: " + id + " was not found")
+                () -> new EmployeeNotFoundException("Employee with id " + id + " not found")
         );
 
         employee.setFirstName(employeeDTO.getFirstName());
@@ -56,7 +55,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void deleteEmployee(Long id) {
         Employee employee = employeeRepository.findById(id).orElseThrow(
-                () -> new ResourceNotFoundException("Employee with id: " + id + " was not found")
+                () -> new EmployeeNotFoundException("Employee with id " + id + " not found")
         );
 
         employeeRepository.deleteById(id);
