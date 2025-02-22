@@ -6,6 +6,7 @@ import com.shotaroi.employeemanagementapp.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +32,7 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public ResponseEntity<EmployeeDTO> createEmployee(@RequestBody EmployeeDTO employeeDTO) {
+    public ResponseEntity<EmployeeDTO> createEmployee(@RequestBody @Validated EmployeeDTO employeeDTO) {
         EmployeeDTO newEmployee = employeeService.createEmployee(employeeDTO);
         return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
     }

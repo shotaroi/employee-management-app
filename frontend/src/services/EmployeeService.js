@@ -1,5 +1,7 @@
 import axios from "axios";
 
-const BASE_API_URL = "http://localhost:8080/api/employees";
+const API_URL = "http://localhost:8080/api/employees";
 
-export const listEmployees = () => axios.get(BASE_API_URL);
+export const listEmployees = () => axios.get(API_URL);
+
+export const createEmployee = (emp) => axios.post(API_URL, emp);
