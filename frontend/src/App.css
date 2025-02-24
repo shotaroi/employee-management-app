@@ -11,3 +11,7 @@ header {
     text-align: center;
     color: white;
 }
+
+.btn {
+    margin-left: 10px;
+}
