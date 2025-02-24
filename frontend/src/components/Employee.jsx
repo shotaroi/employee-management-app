@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import {
   createEmployee,
   getEmployee,
@@ -8,9 +8,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 const Employee = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
 
   const { id } = useParams();
   const navigator = useNavigate();
@@ -18,8 +15,16 @@ const Employee = () => {
   const {
     register,
     handleSubmit,
+    // setValue,
+    reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+        firstName: "",
+        lastName: "",
+        email: "",
+    },
+  });
 
   const onSubmit = (employee) => {
     if (id) {
@@ -55,15 +60,14 @@ const Employee = () => {
     if (id) {
       getEmployee(id)
         .then((response) => {
-          setFirstName(response.data.firstName);
-          setLastName(response.data.lastName);
-          setEmail(response.data.email);
+            const {firstName, lastName, email} = response.data;
+            reset({ firstName, lastName, email });
         })
         .catch((error) => {
           console.error(error);
         });
     }
-  }, [id]);
+  }, [id, reset]);
 
   return (
     <div className="container">
@@ -78,7 +82,6 @@ const Employee = () => {
                   type="text"
                   className="form-control"
                   placeholder="Enter First Name"
-                  value={firstName}
                   name="firstName"
                   {...register("firstName", {
                     required: "First Name required",
@@ -94,7 +97,6 @@ const Employee = () => {
                   type="text"
                   className="form-control"
                   placeholder="Enter Last Name"
-                  value={lastName}
                   name="lastName"
                   {...register("lastName", {
                     required: "Last Name required",
@@ -110,7 +112,6 @@ const Employee = () => {
                   type="email"
                   className="form-control"
                   placeholder="Enter Email"
-                  value={email}
                   name="email"
                   {...register("email", {
                     required: "Email required",
