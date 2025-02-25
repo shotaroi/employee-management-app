@@ -12,6 +12,10 @@ header {
     color: white;
 }
 
+.title {
+    margin-left: 1rem;
+}
+
 .btn {
-    margin-left: 10px;
+    margin-right: 10px;
 }
