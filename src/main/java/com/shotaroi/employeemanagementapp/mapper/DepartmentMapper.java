@@ -7,17 +7,17 @@ public class DepartmentMapper {
 
     public static DepartmentDTO toDTO(Department department) {
         return new DepartmentDTO(
-                department.getId(),
-                department.getDepartmentName(),
-                department.getDepartmentDescription()
+                department.getDepartmentId(),
+                department.getName(),
+                department.getDescription()
         );
     }
 
     public static Department toEntity(DepartmentDTO departmentDTO) {
         return new Department(
-                departmentDTO.getId(),
-                departmentDTO.getDepartmentName(),
-                departmentDTO.getDepartmentDescription()
+                departmentDTO.getDepartmentId(),
+                departmentDTO.getName(),
+                departmentDTO.getDescription()
         );
     }
 }
