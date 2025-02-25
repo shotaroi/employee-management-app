@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { listEmployees, deleteEmployee } from '../services/EmployeeService';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const EmployeeList = () => {
 
@@ -19,9 +19,9 @@ const EmployeeList = () => {
         })
     }
 
-    const addEmployee = () => {
-        navigator('/add-employee');
-    }
+    // const addEmployee = () => {
+    //     navigator('/add-employee');
+    // }
 
     const updateEmployee = (id) => {
         navigator(`/edit-employee/${id}`);
@@ -37,35 +37,40 @@ const EmployeeList = () => {
 
   return (
     <div className='container'>
-        <h2 className="text-center">List of Employees</h2>
-        <button className="btn btn-primary mb-2" onClick={addEmployee}>Add Employee</button>
+        <h2 className="text-center">Employee List</h2>
         <table className="table table-striped table-bordered">
             <thead>
                 <tr>
-                    <th>Employee ID</th>
+                    <th>ID</th>
+                    <th>Department</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
+                    <th>Joining Date</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 {
                     employees.map(emp => 
-                        <tr key={emp.id}>
-                            <td>{emp.id}</td>
+                        <tr key={emp.employeeId}>
+                            <td>{emp.employeeId}</td>
+                            <td>{emp.department.name}</td>
                             <td>{emp.firstName}</td>
                             <td>{emp.lastName}</td>
                             <td>{emp.email}</td>
+                            <td>{emp.joiningDate}</td>
                             <td>
-                                <button className="btn btn-info" onClick={() => updateEmployee(emp.id)}>Update</button>
-                                <button className="btn btn-danger" onClick={() => removeEmployee(emp.id)}>Delete</button>
+                                <button className="btn btn-info" onClick={() => updateEmployee(emp.employeeId)}>Edit</button>
+                                <button className="btn btn-danger" onClick={() => removeEmployee(emp.employeeId)}>Delete</button>
                             </td>
                         </tr>
                     )
                 }
             </tbody>
         </table>
+        {/* <button className="btn btn-primary mb-2" onClick={addEmployee}>Add Employee</button> */}
+        <Link to='/add-employee' className='btn btn-primary mb-2'>Add Employee</Link>
     </div>
   )
 }
