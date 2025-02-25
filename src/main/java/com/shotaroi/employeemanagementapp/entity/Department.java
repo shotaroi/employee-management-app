@@ -15,11 +15,11 @@ import lombok.Setter;
 public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long departmentId;
 
-    @Column(name = "department_name")
-    private String departmentName;
+    @Column(name = "name", unique = true)
+    private String name;
 
-    @Column(name = "department_description")
-    private String departmentDescription;
+    @Column(name = "description")
+    private String description;
 }
