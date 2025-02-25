@@ -7,20 +7,23 @@ public class EmployeeMapper {
 
     public static EmployeeDTO toDTO(Employee employee) {
         return new EmployeeDTO(
-                employee.getId(),
+                employee.getEmployeeId(),
                 employee.getFirstName(),
                 employee.getLastName(),
-                employee.getEmail()
+                employee.getEmail(),
+                employee.getJoiningDate(),
+                employee.getDepartment().getDepartmentId()
                 );
     }
 
     public static Employee toEntity(EmployeeDTO employeeDTO) {
         Employee employee = new Employee();
-        employee.setId(employeeDTO.getId());
+        employee.setEmployeeId(employeeDTO.getEmployeeId());
         employee.setFirstName(employeeDTO.getFirstName());
         employee.setLastName(employeeDTO.getLastName());
         employee.setEmail(employeeDTO.getEmail());
-        employee.setId(employeeDTO.getId());
+        employee.setJoiningDate(employeeDTO.getJoiningDate());
+        employee.setDepartment( employeeDTO.getDepartmentId());
         return employee;
     }
 }
