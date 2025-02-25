@@ -1,10 +1,14 @@
 package com.shotaroi.employeemanagementapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 @Getter
 @Setter
@@ -15,7 +19,7 @@ import lombok.Setter;
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long employeeId;
 
     @Column(name = "first_name")
     private String firstName;
@@ -26,7 +30,12 @@ public class Employee {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(name = "joining_date")
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private Date joiningDate;
+
+    @ManyToOne
     @JoinColumn(name = "department_id")
     private Department department;
 
