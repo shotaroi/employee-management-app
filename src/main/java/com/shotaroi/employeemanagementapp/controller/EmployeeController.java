@@ -1,13 +1,11 @@
 package com.shotaroi.employeemanagementapp.controller;
 
 import com.shotaroi.employeemanagementapp.dto.EmployeeDTO;
-import com.shotaroi.employeemanagementapp.exception.EmployeeNotFoundException;
 import com.shotaroi.employeemanagementapp.service.EmployeeService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
