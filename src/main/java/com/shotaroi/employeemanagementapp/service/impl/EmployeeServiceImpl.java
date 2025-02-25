@@ -2,7 +2,7 @@ package com.shotaroi.employeemanagementapp.service.impl;
 
 import com.shotaroi.employeemanagementapp.dto.EmployeeDTO;
 import com.shotaroi.employeemanagementapp.entity.Employee;
-import com.shotaroi.employeemanagementapp.exception.EmployeeNotFoundException;
+import com.shotaroi.employeemanagementapp.exception.ResourceNotFoundException;
 import com.shotaroi.employeemanagementapp.mapper.EmployeeMapper;
 import com.shotaroi.employeemanagementapp.repository.EmployeeRepository;
 import com.shotaroi.employeemanagementapp.service.EmployeeService;
@@ -26,8 +26,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDTO getEmployeeById(Long id) {
-        Employee employee = employeeRepository.findById(id)
-                .orElseThrow(() -> new EmployeeNotFoundException("Employee with id " + id + " not found"));
+        Employee employee = findEmployee(id);
         return EmployeeMapper.toDTO(employee);
     }
 
@@ -39,9 +38,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public EmployeeDTO updateEmployee(Long id, EmployeeDTO employeeDTO) {
-        Employee employee = employeeRepository.findById(id).orElseThrow(
-                () -> new EmployeeNotFoundException("Employee with id " + id + " not found")
-        );
+        Employee employee = findEmployee(id);
 
         employee.setFirstName(employeeDTO.getFirstName());
         employee.setLastName(employeeDTO.getLastName());
@@ -54,10 +51,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void deleteEmployee(Long id) {
-        Employee employee = employeeRepository.findById(id).orElseThrow(
-                () -> new EmployeeNotFoundException("Employee with id " + id + " not found")
-        );
+        Employee employee = findEmployee(id);
 
         employeeRepository.deleteById(id);
+    }
+
+    public Employee findEmployee(Long id) {
+        return employeeRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException("Employee with id " + id + " not found"));
     }
 }
