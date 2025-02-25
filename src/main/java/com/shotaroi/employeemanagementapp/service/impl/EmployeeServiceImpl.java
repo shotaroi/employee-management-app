@@ -40,9 +40,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EmployeeDTO updateEmployee(Long id, EmployeeDTO employeeDTO) {
         Employee employee = findEmployee(id);
 
+        employee.setDepartment(employeeDTO.getDepartment());
         employee.setFirstName(employeeDTO.getFirstName());
         employee.setLastName(employeeDTO.getLastName());
         employee.setEmail(employeeDTO.getEmail());
+        employee.setJoiningDate(employeeDTO.getJoiningDate());
 
         Employee updatedEmployee = employeeRepository.save(employee);
 
@@ -51,7 +53,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void deleteEmployee(Long id) {
-        Employee employee = findEmployee(id);
+        findEmployee(id);
 
         employeeRepository.deleteById(id);
     }
