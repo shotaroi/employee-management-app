@@ -1,9 +1,20 @@
 package com.shotaroi.employeemanagementapp.mapper;
 
 import com.shotaroi.employeemanagementapp.dto.EmployeeDTO;
+import com.shotaroi.employeemanagementapp.entity.Department;
 import com.shotaroi.employeemanagementapp.entity.Employee;
+import com.shotaroi.employeemanagementapp.repository.DepartmentRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EmployeeMapper {
+    private final DepartmentRepository departmentRepository;
+
+    @Autowired
+    public EmployeeMapper(DepartmentRepository departmentRepository) {
+        this.departmentRepository = departmentRepository;
+    }
 
     public static EmployeeDTO toDTO(Employee employee) {
         return new EmployeeDTO(
@@ -23,7 +34,7 @@ public class EmployeeMapper {
         employee.setLastName(employeeDTO.getLastName());
         employee.setEmail(employeeDTO.getEmail());
         employee.setJoiningDate(employeeDTO.getJoiningDate());
-        employee.setDepartment( employeeDTO.getDepartmentId());
+
         return employee;
     }
 }
