@@ -1,9 +1,11 @@
 package com.shotaroi.employeemanagementapp.service.impl;
 
 import com.shotaroi.employeemanagementapp.dto.EmployeeDTO;
+import com.shotaroi.employeemanagementapp.entity.Department;
 import com.shotaroi.employeemanagementapp.entity.Employee;
 import com.shotaroi.employeemanagementapp.exception.ResourceNotFoundException;
 import com.shotaroi.employeemanagementapp.mapper.EmployeeMapper;
+import com.shotaroi.employeemanagementapp.repository.DepartmentRepository;
 import com.shotaroi.employeemanagementapp.repository.EmployeeRepository;
 import com.shotaroi.employeemanagementapp.service.EmployeeService;
 import lombok.AllArgsConstructor;
@@ -15,11 +17,18 @@ import java.util.stream.Collectors;
 @Service
 @AllArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
-    private EmployeeRepository employeeRepository;
+    private final EmployeeRepository employeeRepository;
+    private final DepartmentRepository departmentRepository;
 
     @Override
     public EmployeeDTO createEmployee(EmployeeDTO employeeDTO) {
         Employee employee = EmployeeMapper.toEntity(employeeDTO);
+
+        Department department = departmentRepository.findById(employeeDTO.getDepartmentId())
+                .orElseThrow(() -> new ResourceNotFoundException("Department id " + employeeDTO.getDepartmentId() + " not found"));
+
+        employee.setDepartment(department);
+
         Employee savedEmployee = employeeRepository.save(employee);
         return EmployeeMapper.toDTO(savedEmployee);
     }
@@ -40,7 +49,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EmployeeDTO updateEmployee(Long id, EmployeeDTO employeeDTO) {
         Employee employee = findEmployee(id);
 
-        employee.setDepartment(employeeDTO.getDepartment());
+        if (employeeDTO.getDepartmentId() != null) {
+            Department department = departmentRepository.findById(employeeDTO.getDepartmentId())
+                    .orElseThrow(() -> new RuntimeException("Department not found"));
+            employee.setDepartment(department);
+        }
+
+//        employee.setDepartment(employeeDTO.getDepartment());
         employee.setFirstName(employeeDTO.getFirstName());
         employee.setLastName(employeeDTO.getLastName());
         employee.setEmail(employeeDTO.getEmail());
