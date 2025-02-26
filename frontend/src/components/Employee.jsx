@@ -25,6 +25,7 @@ const Employee = () => {
       firstName: "",
       lastName: "",
       email: "",
+      joiningDate: "",
     },
   });
 
@@ -66,8 +67,10 @@ const Employee = () => {
     if (id) {
       getEmployee(id)
         .then((response) => {
-          const { department, firstName, lastName, email } = response.data;
-          reset({ department, firstName, lastName, email });
+          console.log(response.data);
+          const { department, firstName, lastName, email, joiningDate } =
+            response.data;
+          reset({ department, firstName, lastName, email, joiningDate });
         })
         .catch((error) => {
           console.error(error);
@@ -84,10 +87,17 @@ const Employee = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="form-group m-3">
                 <label className="form-label">Department</label>
-                <select className="form-control" {...register("department", {required: "Department is required"})}>
-                  <option value="" disabled selected>Select Department</option>
+                <select
+                  className="form-control"
+                  {...register("departmentId", {
+                    required: "Department is required",
+                  })}
+                >
+                  <option value="" disabled>
+                    Select Department
+                  </option>
                   {departments.map((dept) => (
-                    <option key={dept.departmentId} value={dept}>
+                    <option key={dept.departmentId} value={dept.departmentId}>
                       {dept.name}
                     </option>
                   ))}
