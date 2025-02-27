@@ -12,14 +12,6 @@ const EmployeeList = () => {
     getAllEmployees();
   }, []);
 
-  // const getAllEmployees = () => {
-  //     listEmployees().then(response => {
-  //         setEmployees(response.data);
-  //     }).catch(error => {
-  //         console.error(error);
-  //     })
-  // }
-
   const updateEmployee = (id) => {
     navigator(`/edit-employee/${id}`);
   };
@@ -33,13 +25,6 @@ const EmployeeList = () => {
         console.error(error);
       });
   };
-
-  // const fetchDepartment = (deptId) => {
-  //      getDepartment(deptId)
-  //     .then(response => {
-  //         setDepartment(response.data)
-  //     }).catch(error => console.error(error));
-  // }
 
   const getAllEmployees = async () => {
     try {
@@ -113,7 +98,6 @@ const EmployeeList = () => {
           })}
         </tbody>
       </table>
-      {/* <button className="btn btn-primary mb-2" onClick={addEmployee}>Add Employee</button> */}
       <Link to="/add-employee" className="btn btn-primary mb-2">
         Add Employee
       </Link>
