@@ -16,7 +16,6 @@ const Employee = () => {
   const {
     register,
     handleSubmit,
-    // setValue,
     reset,
     formState: { errors },
   } = useForm({
@@ -167,7 +166,7 @@ const Employee = () => {
                 )}
               </div>
               <button className="btn btn-success m-3" type="submit">
-                Submit
+                Save
               </button>
             </form>
           </div>
