@@ -1,7 +1,10 @@
 branch-defaults:
   default:
-    environment: react-app-env
+    environment: backend-env
 environment-defaults:
+  backend-env:
+    branch: null
+    repository: null
   react-app-env:
     branch: null
     repository: null
