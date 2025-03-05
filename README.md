@@ -105,6 +105,4 @@
 - `PUT /api/departments/{id}` - Update a department
 - `DELETE /api/departments/{id}` - Delete a department
 
-## Contact
-For any inquiries, please contact [your email or GitHub profile].
 
