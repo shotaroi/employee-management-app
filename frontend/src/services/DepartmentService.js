@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const BASE_API_URL = 'http://localhost:8080/api/departments';
+// const BASE_API_URL = 'http://localhost:8080/api/departments';
+const BASE_API_URL = 'http://Employee-management-app-env.eba-m2wv2fpi.eu-north-1.elasticbeanstalk.com/api/departments';
 
 export const getAllDepartments = () => axios.get(BASE_API_URL);
 
