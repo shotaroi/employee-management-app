@@ -23,7 +23,6 @@ The Employee Management App is a full-stack web application that allows users to
 - MySQL
 - Lombok
 - ModelMapper
-- Spring Security (if implemented)
 
 ### Deployment:
 - AWS Elastic Beanstalk (Backend)
@@ -105,12 +104,6 @@ The Employee Management App is a full-stack web application that allows users to
 - `GET /api/departments/{id}` - Get a department by ID
 - `PUT /api/departments/{id}` - Update a department
 - `DELETE /api/departments/{id}` - Delete a department
-
-## Contributing
-Contributions are welcome! Please fork the repository and submit a pull request with your improvements.
-
-## License
-This project is licensed under the MIT License.
 
 ## Contact
 For any inquiries, please contact [your email or GitHub profile].
