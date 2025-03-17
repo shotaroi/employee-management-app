@@ -15,7 +15,7 @@
 - React
 - Axios
 - React Hook Form
-- Bootstrap / Tailwind CSS (if used)
+- Bootstrap 
 
 ### Backend:
 - Spring Boot
