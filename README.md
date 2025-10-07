@@ -1,7 +1,7 @@
 # Employee Management App
 
 ## Overview
-[The Employee Management App](http://employee-management-app-frontend.s3-website.eu-north-1.amazonaws.com/) is a full-stack web application that allows users to manage employees, departments, and other related entities. It is built using React for the frontend and Spring Boot for the backend, with MySQL as the database. ~~The application is deployed on AWS using Elastic Beanstalk for the backend and S3 for the frontend.~~
+[The Employee Management App](http://employee-management-app-frontend.s3-website.eu-north-1.amazonaws.com/) is a full-stack web application that allows users to manage employees, departments, and other related entities. It is built using React for the frontend and Spring Boot for the backend, with MySQL as the database. The application was deployed on AWS using Elastic Beanstalk for the backend and S3 for the frontend.
 
 ## Features
 - Add, update, and delete employees
